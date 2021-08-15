@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Georama", sans-serif;
+  height: 100vh;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #2cb9f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 5px;
+}
+
+section {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section h1 {
+  color: #fff;
+
+  font-family: "Georama", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#url {
+  border: none;
+  width: 100%;
+  outline: none;
+  font-family: "Georama", sans-serif;
+  font-size: 18px;
+}
+
+#btn {
+  cursor: pointer;
+}
+
+#btn img {
+  height: 20px;
+}
+
+#msg {
+  text-align: center;
+  font-family: "Georama", sans-serif;
+  font-size: 18px;
+  margin-top: 25px;
+  color: #fff;
+}
+
+section form {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.form__input {
+  font-family: "Georama", sans-serif;
+
+  border-radius: 8px;
+  width: 78%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+}
+
+.form__button {
+  font-family: "Georama", sans-serif;
+
+  background-color: #f5133a;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  width: 20%;
+  padding: 10px;
+  transition: all ease-in-out 0.2s;
+}
+
+.url__encurtada {
+  background: #fff;
+  font-family: "Georama", sans-serif;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+span{
+  font-family: "Georama", sans-serif;
+  color: #fff;
+  font-size: 14px;
+}
+
+span a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  
+}
