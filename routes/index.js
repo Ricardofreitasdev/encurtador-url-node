@@ -4,9 +4,7 @@ const Link = require("../models/link")
 const layoutController = require("../controller/layoutController")
 
 router.get('/', layoutController.index );
-
-router.get('/dir/:code', layoutController.redirect )
-
+router.get('/:code', layoutController.redirect )
 router.post('/new', layoutController.create )
 
 module.exports = router;

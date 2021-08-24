@@ -16,7 +16,7 @@ const Link = database.define('link', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    hits: {
+    click: {
         type: Sequelize.INTEGER,
         allowNull: true,
         defaultValue: 0

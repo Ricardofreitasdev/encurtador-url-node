@@ -14,8 +14,8 @@ module.exports = {
   async redirect(req, res) {
     const code = req.params.code;
     const resultado = await Link.findOne({ where: { code } });
-    if (!resultado) return res.sendStatus(404);
-    resultado.hits++;
+    if (!resultado) return res.render("error");
+    resultado.click++;
     await resultado.save();
     res.redirect(resultado.url);
   },

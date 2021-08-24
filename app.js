@@ -24,7 +24,9 @@ app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
@@ -35,7 +37,28 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+
+  if( 404 === err.status  ){
+      res.format({
+          'text/plain': () => {
+              res.send({message: 'not found Data'});
+          },
+          'text/html': () => {
+              res.render('error');
+          },
+          'application/json': () => {
+              res.json({message: 'Método não suportado'});
+          },
+          'default': () => {
+              res.status(406).send('Not Acceptable');
+          }
+      })
+  }
+
+  // render the error page
+  if(500 === err.status) {
+        return res.send({message: 'error occur'});
+    }
 });
 
 module.exports = app;

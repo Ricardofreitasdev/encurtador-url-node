@@ -12,7 +12,7 @@ module.exports = {
     if (!resultado) return res.status(404).json({ message: "Não localizado" });
 
     const token = jwt.sign({ userId: resultado.id }, process.env.SECRET, {
-      expiresIn: 300,
+      expiresIn: 3000,
     });
     return res.json({ auth: true, token: token });
   },
@@ -20,8 +20,10 @@ module.exports = {
   async users(req, res) {
     const { name } = req.body;
 
-    if (!name)
-      return res.status(400).json({ message: "Campo name é obrigatório" });
+    if (!name) return res.status(400).json({ message: "Campo name é obrigatório" });
+
+    const exist = await User.findOne({ where: { name } })
+    if (exist) return res.status(400).json({ message: "Já existe usuario com esse nome" });
 
     const code = functions.newCode();
     const resultado = await User.create({
@@ -47,12 +49,13 @@ module.exports = {
       code,
     });
     const data = {
-      url: `${process.env.URL}/dir/${resultado.code}`,
+      url: `${process.env.URL}/${resultado.code}`,
     };
     res.status(201).json(data);
   },
 
   async getAll(req, res) {
+    console.log('chamou');
     const filter_order = req.query.order ? req.query.order : "ASC";
     const filter = {
       order: [["id", filter_order]],
@@ -70,6 +73,7 @@ module.exports = {
   },
 
   verifyJWT(req, res, next) {
+    console.log('emtrouu');
     const token = req.headers["access_token"];
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err)
