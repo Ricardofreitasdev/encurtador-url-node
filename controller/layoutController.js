@@ -24,6 +24,7 @@ module.exports = {
     const url = req.body.url;
     const code = functions.newCode();
     const resultado = await Link.create({
+      user_id: 1,
       url,
       code,
     });

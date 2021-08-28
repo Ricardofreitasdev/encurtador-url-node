@@ -41,7 +41,7 @@ app.use(function(err, req, res, next) {
   if( 404 === err.status  ){
       res.format({
           'text/plain': () => {
-              res.send({message: 'not found Data'});
+              res.json({message: 'Método não suportado'});
           },
           'text/html': () => {
               res.render('error');
