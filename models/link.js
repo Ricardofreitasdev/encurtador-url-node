@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const database = require('../db');
+const moment = require("moment")
 
 const Link = database.define('link', {
     id: {
@@ -20,6 +21,18 @@ const Link = database.define('link', {
         type: Sequelize.INTEGER,
         allowNull: true,
         defaultValue: 0
+    },
+    createdAt: {
+        type: Sequelize.DATE,
+      get() {
+            return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY');
+        }
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        get() {
+            return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY');
+        }
     }
 })
 

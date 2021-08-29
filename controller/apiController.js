@@ -48,14 +48,18 @@ module.exports = {
       url,
       code,
     });
+
+
     const data = {
       url: `${process.env.URL}/${resultado.code}`,
+      id: resultado.id,
+      code: resultado.code,
+      created: resultado.createdAt
     };
     res.status(201).json(data);
   },
 
   async getAll(req, res) {
-    console.log('chamou');
     const filter_order = req.query.order ? req.query.order : "ASC";
     const filter = {
       order: [["id", filter_order]],
@@ -73,7 +77,7 @@ module.exports = {
   },
 
   verifyJWT(req, res, next) {
-    console.log('emtrouu');
+ 
     const token = req.headers["access_token"];
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err)
