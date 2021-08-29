@@ -3,7 +3,7 @@ var router = express.Router();
 const apiController = require("../controller/apiController")
 
 router.get('/list', apiController.verifyJWT ,apiController.getAll)
-router.post('/create', apiController.create);
+router.post('/create', apiController.verifyJWT, apiController.create);
 router.post('/auth', apiController.auth)
 router.post('/users', apiController.users);
 

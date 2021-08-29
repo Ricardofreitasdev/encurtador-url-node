@@ -15,6 +15,10 @@ const User = database.define('user', {
     code: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    token: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 })
 

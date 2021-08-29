@@ -9,6 +9,10 @@ const Link = database.define('link', {
         allowNull: false,
         primaryKey: true
     },
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     code: {
         type: Sequelize.STRING,
         allowNull: false

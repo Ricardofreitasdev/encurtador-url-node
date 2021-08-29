@@ -7,13 +7,14 @@ const functions = require("../utils/functions");
 module.exports = {
   async auth(req, res) {
     const code = req.body.code;
-    const resultado = await User.findOne({ where: { code } });
+    const user = await User.findOne({ where: { code } });
 
-    if (!resultado) return res.status(404).json({ message: "Não localizado" });
+    if (!user) return res.status(404).json({ message: "Não localizado" });
+    const token = functions.newToken(user.id)
+    
+    user.token = token;
+    await user.save()
 
-    const token = jwt.sign({ userId: resultado.id }, process.env.SECRET, {
-      expiresIn: 3000,
-    });
     return res.json({ auth: true, token: token });
   },
 
@@ -45,6 +46,7 @@ module.exports = {
       return res.status(400).json({ message: "Campo url é obrigatório" });
     const code = functions.newCode();
     const resultado = await Link.create({
+      user_id: req.userId,
       url,
       code,
     });
@@ -77,11 +79,14 @@ module.exports = {
   },
 
   verifyJWT(req, res, next) {
+<<<<<<< HEAD
  
+=======
+>>>>>>> 63dc82a60fc26f540f89750602a5cecad564031c
     const token = req.headers["access_token"];
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err)
-        return res.status(401).json({ error: "Token inválido ou expirado" });
+        return res.status(401).json({ error: "Token inválido" });
       req.userId = decoded.userId;
       next();
     });

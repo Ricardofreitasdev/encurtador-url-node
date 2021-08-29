@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+
+
 module.exports = {
   newCode() {
    return Array(7)
@@ -6,5 +9,8 @@ module.exports = {
         return x[Math.floor(Math.random() * x.length)];
       })
       .join("");
+  },
+  newToken(id){
+    return jwt.sign({ userId: id }, process.env.SECRET);
   }
 };
