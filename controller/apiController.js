@@ -79,10 +79,6 @@ module.exports = {
   },
 
   verifyJWT(req, res, next) {
-<<<<<<< HEAD
- 
-=======
->>>>>>> 63dc82a60fc26f540f89750602a5cecad564031c
     const token = req.headers["access_token"];
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err)
